@@ -16,10 +16,10 @@ mutex mtx;
 
 // 명령어 처리 함수들
 void echo(const vector<string>& args) {
-    for (size_t i = 1; i < args.size(); ++i) {
-        cout << args[i] << (i < args.size() - 1 ? " " : "");
+    if (args.size() > 1) {
+        // 두 번째 인수만 출력합니다. 추가 인수는 무시합니다.
+        cout << args[1] << endl;
     }
-    cout << endl;
 }
 
 void dummy(const vector<string>& args) {
