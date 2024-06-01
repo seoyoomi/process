@@ -41,6 +41,27 @@ void gcd(const vector<string>& args) {
     cout << "GCD: " << x << endl;
 }
 
+void prime(const vector<string>& args) {
+    if (args.size() < 2) {
+        cout << "Usage: prime x" << endl;
+        return;
+    }
+    int n = stoi(args[1]);
+    vector<bool> is_prime(n + 1, true);
+    int count = 0;
+    for (int p = 2; p * p <= n; ++p) {
+        if (is_prime[p]) {
+            for (int i = p * p; i <= n; i += p)
+                is_prime[i] = false;
+        }
+    }
+    for (int p = 2; p <= n; ++p) {
+        if (is_prime[p])
+            ++count;
+    }
+    cout << "Prime count up to " << n << ": " << count << endl;
+}
+
 void sum(const vector<string>& args) {
     if (args.size() < 2) {
         cout << "Usage: sum x" << endl;
