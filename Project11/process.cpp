@@ -8,6 +8,7 @@
 #include <map>
 #include <mutex>
 #include <chrono>
+#include <condition_variable>
 
 using namespace std;
 using namespace std::chrono;
@@ -57,9 +58,9 @@ void prime(const vector<string>& args) {
     }
     for (int p = 2; p <= n; ++p) {
         if (is_prime[p])
-            ++count;
+            cout << p << " ";
     }
-    cout << "Prime count up to " << n << ": " << count << endl;
+    cout << endl;
 }
 
 void sum(const vector<string>& args) {
@@ -92,7 +93,8 @@ void execute(const vector<string>& tokens) {
         {"echo", echo},
         {"dummy", dummy},
         {"gcd", gcd},
-        {"sum", sum}
+        {"sum", sum},
+        {"prime", prime}
     };
 
     if (tokens.empty()) return;
@@ -115,7 +117,7 @@ int main() {
         auto tokens = parse(line);
         lock_guard<mutex> lg(mtx);
         execute(tokens);
-        this_thread::sleep_for(seconds(5)); // 시간 간격 조절
+        this_thread::sleep_for(seconds(1)); // 시간 간격 조절
     }
 
     file.close();
