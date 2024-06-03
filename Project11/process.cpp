@@ -1,3 +1,7 @@
+// 2-1 (X)
+// 2-2 (X)
+// 2-3 (O)
+
 #include <iostream>
 #include <thread>
 #include <vector>
